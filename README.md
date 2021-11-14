@@ -1,10 +1,14 @@
 ﻿# CDorst.HttpApiGenerator
 
-Create a .NET 6 ASP.NET Core minimal API application with health checks, JWT bearer authentication, period batch logging to Splunk, and in-memory & Redis caching for calling SQL Server stored procedures with zero code
+Create a .NET 6 ASP.NET Core minimal API application with health checks, OpenAPI spec, SwaggerUI, JWT bearer authentication, period batch logging to Splunk, and in-memory & Redis caching for calling SQL Server stored procedures with zero code
 
 `dotnet build` or `dotnet run` the sample `SampleApp.csproj` file (or use an IDE to debug, etc.) to build and run the sample application described below
 
 The compiler generates source code from this README document using the `CDorst.HttpApiGenerator` project
+
+Run the `SampleApp.csproj` application and navigate to `/index.html` to view the SwaggerUI
+![image](https://user-images.githubusercontent.com/18475870/141681145-2faf2cd8-3142-47ae-9218-6f6263968705.png)
+
 
 ## Application
 
