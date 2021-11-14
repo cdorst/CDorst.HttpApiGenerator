@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+	<!-- optional: view generated code in obj directory after build -->
+    <!--<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>-->
+  </PropertyGroup>
+
+  <!-- ignore the class library project files in this repo (added as analyzer for source generation with ProjectReference below) -->
+  <ItemGroup>
+    <Compile Remove="CDorst.HttpApiGenerator\**" />
+    <Content Remove="CDorst.HttpApiGenerator\**" />
+    <EmbeddedResource Remove="CDorst.HttpApiGenerator\**" />
+    <None Remove="CDorst.HttpApiGenerator\**" />
+  </ItemGroup>
+
+  <!-- required for generating source code inferred from README file -->
+  <ItemGroup>
+    <AdditionalFiles Include="README.md" />
+    <ProjectReference Include=".\CDorst.HttpApiGenerator\CDorst.HttpApiGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<!-- required for OpenAPI spec and SwaggerUI -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+
+    <!-- required for JWT bearer auth -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+
+    <!-- required for periodic batch logging to Splunk -->
+    <PackageReference Include="Serilog.Settings.Configuration" Version="3.3.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
+    <PackageReference Include="Serilog.Sinks.Splunk" Version="3.7.0" />
+      
+    <!-- required for Redis cache access -->
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="6.0.0" />
+    
+    <!-- required for SQL Server database access & SELECT 1 health check -->
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.1-rc2.7" />
+  </ItemGroup>
+
+</Project>
