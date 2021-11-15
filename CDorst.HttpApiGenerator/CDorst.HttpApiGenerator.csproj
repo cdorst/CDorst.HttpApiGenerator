@@ -2,16 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<Nullable>enable</Nullable>
+	  <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-	<Authors>cdorst</Authors>
-	<Description>Generate .NET 6 ASP.NET Core minimal API source code entirely from project README file</Description>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<PackageId>CDorst.HttpApiGenerator</PackageId>
-	<Version>0.1.7</Version>
+	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	  <Version>0.1.7</Version>
+	  <PackageId>CDorst.HttpApiGenerator</PackageId>
+	  <Authors>cdorst</Authors>
+    <Copyright>Copyright © Christopher Dorst</Copyright>
+	  <Description>Generate .NET 6 ASP.NET Core minimal API source code entirely from project README file</Description>
+    <PackageIconUrl>https://cdorst-dev.azureedge.net/nuget/package-icon-64.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/cdorst/CDorst.HttpApiGenerator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/cdorst/CDorst.HttpApiGenerator</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
