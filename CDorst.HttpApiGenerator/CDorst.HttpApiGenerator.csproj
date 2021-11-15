@@ -11,7 +11,7 @@
 	<Description>Generate .NET 6 ASP.NET Core minimal API source code entirely from project README file</Description>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<PackageId>CDorst.HttpApiGenerator</PackageId>
-	<Version>0.1.0</Version>
+	<Version>0.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
