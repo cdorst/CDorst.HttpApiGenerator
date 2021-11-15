@@ -673,7 +673,7 @@ app.Map");
                 foreach (var item in errors.Select(e => e.Key).Distinct())
                 {
                     routeBuilder.Append(@"
-.Produces(").Append(item).Append(')');
+.ProducesProblem(").Append(item).Append(')');
                 }
             }
 
