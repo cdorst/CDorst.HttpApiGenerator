@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Operations;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -745,44 +746,7 @@ app.Map");
                         routeBuilder.Append(@"
                     if (!reader.IsDBNull(").Append(ordinal).Append(")) row").Append(returns[ordinal].Key).Append(" = reader.Get");
 
-                        switch (returns[ordinal].Value)
-                        {
-                            case "string?":
-                                routeBuilder.Append("String");
-                                break;
-                            case "char?":
-                                routeBuilder.Append("Char");
-                                break;
-                            case "bool?":
-                                routeBuilder.Append("Boolean");
-                                break;
-                            case "int?":
-                                routeBuilder.Append("Int32");
-                                break;
-                            case "short?":
-                                routeBuilder.Append("Int16");
-                                break;
-                            case "long?":
-                                routeBuilder.Append("Int64");
-                                break;
-                            case "DateTime?":
-                                routeBuilder.Append("DateTime");
-                                break;
-                            case "DateTimeOffset?":
-                                routeBuilder.Append("DateTimeOffset");
-                                break;
-                            case "decimal?":
-                                routeBuilder.Append("Decimal");
-                                break;
-                            case "double?":
-                                routeBuilder.Append("Double");
-                                break;
-                            case "Guid?":
-                                routeBuilder.Append("Guid");
-                                break;
-                            default:
-                                break;
-                        }
+                        routeBuilder.Append(returns[ordinal].Value.ToSqlDataReaderType());
 
                         routeBuilder.Append('(').Append(ordinal).Append(");");
                     }
@@ -857,44 +821,7 @@ app.Map");
                         routeBuilder.Append(@"
                 if (!reader.IsDBNull(").Append(ordinal).Append(")) row").Append(returns[ordinal].Key).Append(" = reader.Get");
 
-                        switch (returns[ordinal].Value)
-                        {
-                            case "string?":
-                                routeBuilder.Append("String");
-                                break;
-                            case "char?":
-                                routeBuilder.Append("Char");
-                                break;
-                            case "bool?":
-                                routeBuilder.Append("Boolean");
-                                break;
-                            case "int?":
-                                routeBuilder.Append("Int32");
-                                break;
-                            case "short?":
-                                routeBuilder.Append("Int16");
-                                break;
-                            case "long?":
-                                routeBuilder.Append("Int64");
-                                break;
-                            case "DateTime?":
-                                routeBuilder.Append("DateTime");
-                                break;
-                            case "DateTimeOffset?":
-                                routeBuilder.Append("DateTimeOffset");
-                                break;
-                            case "decimal?":
-                                routeBuilder.Append("Decimal");
-                                break;
-                            case "double?":
-                                routeBuilder.Append("Double");
-                                break;
-                            case "Guid?":
-                                routeBuilder.Append("Guid");
-                                break;
-                            default:
-                                break;
-                        }
+                        routeBuilder.Append(returns[ordinal].Value.ToSqlDataReaderType());
 
                         routeBuilder.Append('(').Append(ordinal).Append(");");
                     }
@@ -1224,6 +1151,23 @@ record struct ProcedureParameter(string Name, string Type, int? StringLength = d
 
 static class StringExtensions
 {
+    public static string ToSqlDataReaderType(this string type)
+        => type switch
+        {
+            "string?" => "String",
+            "char?" => "Char",
+            "bool?" => "Boolean",
+            "int?" => "Int32",
+            "short?" => "Int16",
+            "long?" => "Int64",
+            "DateTime?" => "DateTime",
+            "DateTimeOffset?" => "DateTimeOffset",
+            "decimal?" => "Decimal",
+            "double?" => "Double",
+            "Guid?" => "Guid",
+            _ => type,
+        };
+
     public static string ToSystemType(this string type)
     {
         var typeUpper = type.ToUpper();
